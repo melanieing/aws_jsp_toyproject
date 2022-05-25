@@ -1,7 +1,5 @@
-<%@ page import="question.QuestionDAO"%>
-<%@ page import="question.QuestionDTO"%>
-<%@ page import="membership.MemberDAO"%>
-<%@ page import="membership.MemberDTO"%>
+<%@ page import="membership.*" %>
+<%@ page import="question.*" %>
 <%@ page import="service.Survey" %>
 <%@ page import="utils.JSFunction"%>
 
@@ -13,12 +11,9 @@
 	
 	MemberDAO mdao = new MemberDAO(application); // DAO 생성
 	MemberDTO mdto = mdao.getMdtoByMemNum(memNum); // 개별 회원 정보 가져오기
-	System.out.println(mdto.getMemNum());
 	QuestionDAO qdao = new QuestionDAO(application);
 	QuestionDTO qdto = qdao.searchQuestByQuestNum(questNum);
-	System.out.println(qdto.getMemNum());
 	String memId = mdto.getMemId();
-	System.out.println(memId);
 	
 	Survey sv = new Survey();
 	

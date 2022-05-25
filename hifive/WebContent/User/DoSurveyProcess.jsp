@@ -1,11 +1,18 @@
 <%@page import="question.QuestionDAO"%>
 <%@page import="question.QuestionDTO"%>
+<%@page import="membership.*"%>
 <%@page import="utils.JSFunction"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%
+
+	String memId = session.getAttribute("memId").toString();
+	MemberDAO mdao = new MemberDAO();	
+	MemberDTO mdto = mdao.getMdtoByMemId(memId);
+	
+	
 	// 폼값 받기
 	String[] questAns = new String[5];
 	for (int i = 0; i < 5; i++) {
@@ -16,11 +23,11 @@
 	QuestionDAO dao = new QuestionDAO(application);
 	int[] iResults = new int[5];
 	
-	if (dao.getQdtoByMemNum(session.getAttribute("memNum").toString()) != null) { // 이미 등록된 설문응답 정보가 있으면, 원래 데이터 삭제하고 
-		dao.deleteByMemNum(session.getAttribute("memNum").toString());
+	if (dao.getQdtoByMemNum(mdto.getMemNum()) != null) { // 이미 등록된 설문응답 정보가 있으면, 원래 데이터 삭제하고 
+		dao.deleteByMemNum(mdto.getMemNum());
 	}	
 	for (int i = 0; i < 5; i++) { // 추가하기
-		iResults[i] = dao.insertQuestion(session.getAttribute("memNum").toString(), Integer.toString(i+1), questAns[i]);
+		iResults[i] = dao.insertQuestion(mdto.getMemNum(), Integer.toString(i+1), questAns[i]);
 	}
 	
 	dao.close();

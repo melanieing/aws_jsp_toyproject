@@ -26,7 +26,8 @@
 <%
 	}
 %>
-	<table border="1">
+	<br/>
+	<table align="center" border="1">
 <%	
 	for (int i = 1; i <= sv.getQuestions().length; i++) {
 %>

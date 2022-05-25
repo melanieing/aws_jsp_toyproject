@@ -13,8 +13,6 @@
 	QuestionDAO qdao = new QuestionDAO(application); // DAO 생성
 	List<QuestionDTO> qdtoList = qdao.getQdtoByMemNum(memNum); // 개별 회원 정보 가져오기
 	QuestionDTO qdto = qdao.searchQuestByQuestNum(questNum);
-	System.out.println(qdto.getQuestType());
-	System.out.println(qdto.getQuestAns());
 
 	//qdao.close(); // DB 연결 해제
 

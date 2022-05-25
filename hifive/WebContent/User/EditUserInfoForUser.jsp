@@ -18,14 +18,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>회원정보 수정</title>
 </head>
 <body>
 	<jsp:include page="../Common/UserLink.jsp"/> <!-- 공통 링크 -->
 	
 	<h2 align="center">회원 정보 수정하기</h2>
-	<form name="writeForm" action="<%=request.getContextPath() %>/Admin/EditUserProcess.jsp?memNum=<%= mdto.getMemNum() %>" method="post">
+	<form name="writeForm" action="<%=request.getContextPath() %>/User/EditUserProcessForUser.jsp?memNum=<%= mdto.getMemNum() %>" method="post">
 		<input type="hidden" name="memNum" value="<%= memNum %>"/>
 		<table align="center" border="1" width="90%">
 			<tr align="center">
@@ -44,7 +44,7 @@
 				<td colspan="4" align="center">
 					<input type="submit" value="수정완료"/>
 					<input type="reset" value="초기화"/>
-					<button type="button" onclick="location.href='UserMain.jsp';">목록 보기</button>
+					<button type="button" onclick="location.href='UserViewForUser.jsp';">목록 보기</button>
 				</td>
 			</tr>
 		</table>

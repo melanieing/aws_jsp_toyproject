@@ -60,6 +60,7 @@
 	<%
 		} else { // 이미 로그인 되어있는 경우 실행
 	%>		
+			session.setAttribute("mode", "user");
 			<jsp:forward page="../User/UserMain.jsp"/>
 			<!--<h4 align="center"> -->
 			<%--= session.getAttribute("memId") --%> 

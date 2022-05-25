@@ -1,13 +1,19 @@
-<%@ page import="question.QuestionDAO" %>
-<%@ page import="question.QuestionDTO" %>
+<%@ page import="question.*" %>
+<%@page import="membership.*"%>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Iterator" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+
+	String memId = session.getAttribute("memId").toString();
+	MemberDAO mdao = new MemberDAO();	
+	MemberDTO mdto = mdao.getMdtoByMemId(memId);
+	
 	QuestionDAO qdao = new QuestionDAO();
-	List<QuestionDTO> ql = qdao.getQdtoByMemNum(session.getAttribute("memNum").toString());
+	List<QuestionDTO> ql = qdao.getQdtoByMemNum(mdto.getMemNum());
 	String checked1 = "";
 	String checked2 = "";
 	String checked3 = "";

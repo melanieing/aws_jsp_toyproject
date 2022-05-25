@@ -1,12 +1,10 @@
 <%@ page import="java.util.Map"%>
 <%@ page import="java.util.HashMap"%>
 <%@ page import="java.util.List"%>
-<%@ page import="model1.board.BoardDAO"%>
-<%@ page import="model1.board.BoardDTO"%>
 <%@ page import="membership.MemberDTO"%>
 <%@ page import="membership.MemberDAO"%>
-
 <%@ page import="utils.BoardPage"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -59,7 +57,8 @@
 <body>
 	<jsp:include page="../Common/AdminLink.jsp"/> <!-- 공통 링크 -->
 
-	<h2 align="center">회원 목록 - 현재 페이지 : <%= pageNum %> (전체 : <%=totalPage %>)</h2>
+	<h2 align="center">회원 목록</h2>
+	<!--  - 현재 페이지 : <%--= pageNum --%> (전체 : <%--=totalPage --%>) -->
 	<!-- 검색 폼 -->
 	<form method="get"> <!-- action 속성 지정 안했으므로 submit 시 폼값이 현재 페이지로 전송됨 -->
 		<table align="center" border="1" width="90%">

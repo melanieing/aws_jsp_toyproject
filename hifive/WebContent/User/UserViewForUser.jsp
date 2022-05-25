@@ -6,14 +6,13 @@
     pageEncoding="UTF-8"%>
 <%
 	String memId = session.getAttribute("memId").toString();
-	String memNum = request.getParameter("memNum");
-	System.out.println("멤버아이디:" + memId);
-	System.out.println("멤버고유번호:" + memNum);
 
-	//String memNum = request.getParameter("memNum"); // 일련번호 받기
-	MemberDAO mdao = new MemberDAO(application); // DAO 생성
-	MemberDTO mdto = mdao.getMdtoByMemNum(memNum); // 개별 회원 정보 가져오기
-	System.out.println("멤버아이디 : " + mdto.getMemId());
+	MemberDAO mdao = new MemberDAO();	
+	MemberDTO mdto = mdao.getMdtoByMemId(memId);
+	
+	String memNum = mdto.getMemNum();
+	
+	
 	//mdao.close(); // DB 연결 해제
 %>
 
@@ -31,9 +30,9 @@
 		<input type="hidden" name="memNum" value="<%= memNum %>"/>
 		<table align="center" border="1" width="90%">
 			<tr align="center">
-				<td>회원 고유번호</td>
-				<td><%= mdto.getMemNum() %></td>
-				<td>아이디(별명)</td>
+				<td width="20%">회원 고유번호</td>
+				<td width="30%"><%= mdto.getMemNum() %></td>
+				<td width="20%">아이디(별명)</td>
 				<td><%= mdto.getMemId() %></td>
 			</tr>
 			<tr align="center">
@@ -45,8 +44,6 @@
 			<tr>
 				<td colspan="4" align="center">
 					<button type="button" onclick="location.href='EditUserInfoForUser.jsp?memNum=<%= mdto.getMemNum() %>';">수정하기</button>
-					<button type="button" name="delete" onclick="location.href='DeleteUserProcess.jsp?memNum=<%= mdto.getMemNum() %>';">삭제하기</button>
-					<button type="button" onclick="location.href='UserViewForUser.jsp';">목록 보기</button>
 				</td>
 			</tr>
 		</table>

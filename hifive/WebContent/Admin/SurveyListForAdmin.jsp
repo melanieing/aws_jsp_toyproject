@@ -1,12 +1,8 @@
 <%@ page import="java.util.Map"%>
 <%@ page import="java.util.HashMap"%>
 <%@ page import="java.util.List"%>
-<%@ page import="model1.board.BoardDAO"%>
-<%@ page import="model1.board.BoardDTO"%>
-<%@ page import="membership.MemberDTO"%>
-<%@ page import="membership.MemberDAO"%>
-<%@ page import="question.QuestionDTO"%>
-<%@ page import="question.QuestionDAO"%>
+<%@ page import="membership.*" %>
+<%@ page import="question.*" %>
 <%@ page import="utils.BoardPage"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>

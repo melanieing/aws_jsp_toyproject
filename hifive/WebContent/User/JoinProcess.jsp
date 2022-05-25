@@ -24,12 +24,12 @@
 	MemberDAO dao = new MemberDAO(application);
 	int iResult = dao.insertMember(memId, memPwd, memAge, memGender);
 	
-	
-	dao.close();
+	//dao.close();
 	
 	// 성공 or 실패?
 	if (iResult == 1) {
 		session.setAttribute("memId", memId);
+		session.setAttribute("mode", "user");
 		JSFunction.alertLocation("가입이 완료되었습니다!", "UserMain.jsp", out);
 
 	} else {

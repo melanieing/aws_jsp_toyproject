@@ -1,18 +1,18 @@
 <%@ page import="service.Matching" %>
-<%@ page import="membership.MemberDAO"%>
-<%@ page import="membership.MemberDTO"%>
-<%@ page import="question.QuestionDAO"%>
-<%@ page import="question.QuestionDTO"%>
+<%@ page import="membership.*"%>
+<%@ page import="question.*"%>
 <%@ page import="java.util.Set" %>
 <%@ page import="java.util.Map.Entry" %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	MemberDAO mdao = new MemberDAO();
+	String memId = session.getAttribute("memId").toString();
+	MemberDAO mdao = new MemberDAO();	
 	QuestionDAO qdao = new QuestionDAO();
+	MemberDTO mdto = mdao.getMdtoByMemId(memId);
 	Matching manager = new Matching(mdao, qdao);
-	String memNum = session.getAttribute("memNum").toString();
+	String memNum = mdto.getMemNum();
 	
 %>
 <!DOCTYPE html>

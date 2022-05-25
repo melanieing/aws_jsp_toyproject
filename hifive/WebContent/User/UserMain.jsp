@@ -1,24 +1,23 @@
+<%@page import="question.QuestionDAO"%>
 <%@ page import="membership.MemberDAO" %>
 <%@ page import="membership.MemberDTO" %>
+<%@ page import="java.time.LocalDate" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.time.LocalDate" %>
-<%@ page import="java.time.format.DateTimeFormatter" %>
 
 <%@ include file="../Login/IsLoggedIn.jsp" %> <!-- 로그인 확인 -->
 
 <%
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일");
 	
-	String memId= request.getParameter("memId");
-	System.out.println(mem)
-	MemberDTO getMemberDTO(String memId, String memPwd);
-	MemberDAO mdao = new MemberDAO(application);
+	String memId= session.getAttribute("memId").toString();
+
+	MemberDAO mdao = new MemberDAO();	
 	MemberDTO mdto = mdao.getMdtoByMemId(memId);
-	String memPwd = request.getParameter("memPwd");
-	String memNum = mdto.getMemNum();
-	System.out.println(memNum);
+	
+	System.out.println(mdto.getMemNum());
 	
 %>
 <!DOCTYPE html>

@@ -9,10 +9,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	MemberDAO mdao = new MemberDAO();
+
+	String memId = session.getAttribute("memId").toString();
+	MemberDAO mdao = new MemberDAO();	
 	QuestionDAO qdao = new QuestionDAO();
+	MemberDTO mdto = mdao.getMdtoByMemId(memId);
 	Matching manager = new Matching(mdao, qdao);
-	String memNum = session.getAttribute("memNum").toString();
+	String memNum = mdto.getMemNum();
 	
 %>
 <!DOCTYPE html>

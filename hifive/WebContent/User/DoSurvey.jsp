@@ -6,7 +6,6 @@
 <head>
 	<meta charset="UTF-8">
 	<title>설문조사 참여하기</title>
-	<link rel="icon" href="data:;base64,iVBORw0KGgo=">
 	<script type="text/javascript">
 		function validateForm(form) { // 폼 내용 검증
 			var checked_one = document.querySelector('input[name = "1"]:checked');
@@ -36,9 +35,9 @@
 </head>
 <body>
 	<jsp:include page="../Common/UserLink.jsp"/>
-	<h2>설문조사 참여하기</h2>
+	<h2 align="center">설문조사 참여하기</h2>
 	<form name="surveyForm" method="post" action="DoSurveyProcess.jsp" onsubmit="return validateForm(this)">
-		<table border="1" width="90%">
+		<table align="center" border="1" width="90%">
 			<tr>
 				<td colspan="1" align="center">설문유형1.당신은 모든 메뉴가 맛있다는 김밥천국에 왔습니다. 어떤 음식을 먹을까요?</td>
 			</tr>

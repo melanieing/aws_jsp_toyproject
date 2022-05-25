@@ -6,11 +6,9 @@
     pageEncoding="UTF-8"%>
 <%
 	String memNum = request.getParameter("memNum"); // 일련번호 받기
-	System.out.println("멤버고유번호:" + memNum);
 	MemberDAO mdao = new MemberDAO(application); // DAO 생성
 	MemberDTO mdto = mdao.getMdtoByMemNum(memNum); // 개별 회원 정보 가져오기
-	System.out.println("멤버아이디 : " + mdto.getMemId());
-	mdao.close(); // DB 연결 해제
+	//mdao.close(); // DB 연결 해제
 %>
 
 <!DOCTYPE html>
