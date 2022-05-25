@@ -2,7 +2,10 @@
     pageEncoding="UTF-8"%>
 <%
 	String mode = session.getAttribute("mode").toString();
-
+	String memId = "";
+	if (session.getAttribute("memId") != null) {
+		memId = session.getAttribute("memId").toString();
+	}
 	// 방법1. 회원 인증정보 속성 삭제
 	// 인수로 지정한 속성을 삭제하는 메서드
 // 	session.removeAttribute("memId");
@@ -16,9 +19,9 @@
 	session.invalidate();
 	
 	// 속성 삭제 후 페이지 이동
-	if (mode.equals("admin")) {
+	if (memId == null) {
 		response.sendRedirect("AdminLoginForm.jsp");			
-	} else if (mode.equals("user")) {
+	} else {
 		response.sendRedirect("UserLoginForm.jsp");			
 	}
 %>

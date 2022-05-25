@@ -17,7 +17,6 @@
 	MemberDAO mdao = new MemberDAO();	
 	MemberDTO mdto = mdao.getMdtoByMemId(memId);
 	
-	System.out.println(mdto.getMemNum());
 	
 %>
 <!DOCTYPE html>

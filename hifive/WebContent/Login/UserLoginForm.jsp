@@ -8,7 +8,9 @@
 </head>
 <body>
 	<jsp:include page="../Common/UserLink.jsp"/>
+	
 	<h2 align="center">로그인 페이지</h2> <%-- 내장 객체 영역에 LoginErrMsg 속성이 있는지 확인 후 그 내용 출력 --%>
+	
 	<span style="color : red; font-size: 1.2em;">
 		<%= request.getAttribute("LoginErrMsg") == null ?
 				"" : request.getAttribute("LoginErrMsg") %>
