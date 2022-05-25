@@ -10,53 +10,55 @@ import java.util.List;
 
 public class MusicDao {
 	private static MusicDao instance = null;
+
 	private MusicDao() {
 	}
-	
+
 	public static MusicDao getInstance() {
 		if (instance == null) {
 			synchronized (MusicDao.class) {
-				instance = new MusicDao();				
+				instance = new MusicDao();
 			}
 		}
 		return instance;
 	}
+
 	// 1번 초기화
-		public void init() {
-			Connection conn = null;
-			PreparedStatement pstmt = null;
-			String[] init = new String[] { "TRUNCATE TABLE \"MUSIC_VOTE\"", "DROP SEQUENCE \"M_V\"",
-					"CREATE SEQUENCE \"M_V\" NOCACHE" };
+	public void init() {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String[] init = new String[] { "TRUNCATE TABLE \"MUSIC_VOTE\"", "DROP SEQUENCE \"M_V\"",
+				"CREATE SEQUENCE \"M_V\" NOCACHE" };
 
-			try {
-				conn = ConnUtil.getConnection();
-				for (int i = 0; i < init.length; i++) {
-					pstmt = conn.prepareStatement(init[i]); // 배열에 접근 쿼리 템플릿 준비
-					pstmt.executeUpdate();
+		try {
+			conn = ConnUtil.getConnection();
+			for (int i = 0; i < init.length; i++) {
+				pstmt = conn.prepareStatement(init[i]); // 배열에 접근 쿼리 템플릿 준비
+				pstmt.executeUpdate();
+			}
+
+			System.out.println("초기화 되었습니다.");
+
+		} catch (SQLException e) {
+			System.out.println("에러발생.");
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
 				}
-
-				System.out.println("초기화 되었습니다.");
-
-			} catch (SQLException e) {
-				System.out.println("에러발생.");
-				e.printStackTrace();
-			} finally {
-				if (pstmt != null) {
-					try {
-						pstmt.close();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-				}
-				if (conn != null) {
-					try {
-						conn.close();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
+			}
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
 				}
 			}
 		}
+	}
 
 	// 2번 음악장르 등록하기
 	public boolean insertMusic(String input) {
@@ -138,84 +140,87 @@ public class MusicDao {
 		}
 		return (ls.size() == 0) ? null : ls;
 	}
-	
+
 	// 현재 목록에서 추가로 등록
-		public int countNum() {
-			Connection conn = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			int number = -1;
+	public int countNum() {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int number = -1;
 
-			// 테이블 "MUSIC_VOTE"의 현재 NUMBER 수 체크
-			String sql = "SELECT COUNT(\"NUMBER\") FROM MUSIC_VOTE";
-			try {
-				conn = ConnUtil.getConnection();
-				pstmt = conn.prepareStatement(sql);
+		// 테이블 "MUSIC_VOTE"의 현재 NUMBER 수 체크
+		String sql = "SELECT COUNT(\"NUMBER\") FROM MUSIC_VOTE";
+		try {
+			conn = ConnUtil.getConnection();
+			pstmt = conn.prepareStatement(sql);
 
-				rs = pstmt.executeQuery();
-				while (rs.next()) {
-					number = rs.getInt(1);
-				}
-				return number;
-			} catch (SQLException e) {
-				System.out.println("에러발생.");
-				e.printStackTrace();
-			} finally {
-				if (pstmt != null) {
-					try {
-						pstmt.close();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-				}
-				if (conn != null) {
-					try {
-						conn.close();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-				}
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				number = rs.getInt(1);
 			}
-
 			return number;
-		}
-		// 3번 추가 음악장르 표 누적
-		public void newmusic(String addmusic) {
-
-			Connection conn = null;
-			PreparedStatement pstmt = null;
-			// SEQUENCE 활용, 추가하는 장르에 1표 자동누적
-			String sql = "INSERT INTO MUSIC_VOTE VALUES(M_V.NEXTVAL, ? , 1)";
-			try {
-				conn = ConnUtil.getConnection();
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, addmusic);
-
-				pstmt.executeUpdate();
-				System.out.println("등록되었습니다.");
-
-			} catch (SQLException e) {
-				System.out.println("에러발생.");
-				e.printStackTrace();
-			} finally {
-				if (pstmt != null) {
-					try {
-						pstmt.close();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
+		} catch (SQLException e) {
+			System.out.println("에러발생.");
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
 				}
-				if (conn != null) {
-					try {
-						conn.close();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
+			}
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
 				}
 			}
 		}
+
+		return number;
+	}
+
+	// 3번 추가 음악장르 표 누적
+	public void newmusic(String addmusic) {
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		// SEQUENCE 활용, 추가하는 장르에 1표 자동누적
+		String sql = "INSERT INTO MUSIC_VOTE VALUES(M_V.NEXTVAL, ? , 1)";
+		try {
+			conn = ConnUtil.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, addmusic);
+
+			pstmt.executeUpdate();
+			System.out.println("등록되었습니다.");
+
+		} catch (SQLException e) {
+			System.out.println("에러발생.");
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
 	// 표 누적
-	public boolean updatevote(long number) {
+	public boolean updatevote(String number) {
+		int num = Integer.parseInt(number);
 		boolean ret = false;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -226,7 +231,7 @@ public class MusicDao {
 			conn = ConnUtil.getConnection();
 
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setObject(1, number); // VOTE 누적
+			pstmt.setInt(1, num); // VOTE 누적
 
 			pstmt.executeUpdate();
 			System.out.println("설문완료!!");
@@ -251,19 +256,20 @@ public class MusicDao {
 		}
 		return ret;
 	}
+
 	// 4번 설문항목 변경하기
-	public void altermusic(String input, long number) {
+	public void altermusic(String input, String newInput) {
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 
-		String sql = "update \"MUSIC_VOTE\" set \"MUSIC_TYPE\" = ? where \"NUMBER\" = ?";
+		String sql = "update \"MUSIC_VOTE\" set \"MUSIC_TYPE\"=? where \"MUSIC_TYPE\"=?";
 		try {
 			conn = ConnUtil.getConnection();
 
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, input);
-			pstmt.setLong(2, number);
+			pstmt.setString(1, newInput);
+			pstmt.setString(2, input);
 
 			pstmt.executeUpdate();
 			System.out.println("항목이 변경 되었습니다.");

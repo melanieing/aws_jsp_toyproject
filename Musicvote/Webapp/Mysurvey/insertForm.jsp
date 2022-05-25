@@ -10,13 +10,16 @@
 <script src="script.js"></script>
 </head>
 <body>
-	<h1>※설문항목 등록하기※</h1>
+	<h2>※설문항목 등록하기※</h2>
 	<article>
 		<form method="post" name="insertForm" action="insertProc.jsp">
 			희망하는 설문항목은?<br /> 
 			<input type="text" name="musictype" /> 
 			<input type="submit" value="등록하기" onclick="isExist()">
 		</form>
+		<ul>
+			<li><a href=main.jsp> 홈으로</a></li>
+		</ul>
 	</article>
 </body>
 </html>

@@ -13,20 +13,18 @@
 	<section>
 		<table class="musicvote">
 				<h1>※설문조사※</h1>
-				<h4>좋아하는 음악장르에 대한 설문조사 입니다! 초기화 먼저 진행해주세요 할까</h4>
+				<h4> 좋아하는 음악장르에 대한 설문조사 입니다! </h4>
 		
-				<input type="submit" value="초기화"
-					onclick="initProc.jsp" />
 				<input type="submit" value="음악장르등록"
-					onclick="insertForm.jsp" />
+					onclick="javascript:window.location='insertForm.jsp'" />
 				<input type="submit" value="설문참여"
-					onclick="surveyForm.jsp" />
+					onclick="javascript:window.location='surveyForm.jsp'" />
 				<input type="submit" value="항목이름 변경"
-					onclick="modifyForm.jsp" />
+					onclick="javascript:window.location='modifyForm.jsp'" />
 				<input type="submit" value="설문현황"
-					onclick="list.jsp" />
+					onclick="javascript:window.location='list.jsp'" />
 				<input type="submit" value="최종결과확인"
-					onclick="voteResult.jsp" />
+					onclick="javascript:window.location='voteResult.jsp'" />
 		</table>
 	</section>
 </body>

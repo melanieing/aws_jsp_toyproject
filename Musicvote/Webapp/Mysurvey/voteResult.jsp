@@ -21,7 +21,7 @@
 <form method="post" action="main.jsp" name="surveyForm">
 	<h2>※ 설문 결과확인 ※</h2>
 	<%
-		if (musiclist.size() == 0) {
+		if (musiclist == null) {
 	%>
 	<h3>데이터가 없습니다. 음악장르를 등록하시오.</h3>
 	<%
@@ -42,8 +42,9 @@
 		%>
 	</table><br>
 	
-	<li> 총 투표 수 : <%= mdo.totalvote() %></li><br/>
-	<input type="button" value="홈으로" >
+	<li> 총 투표 수 : <%= mdo.totalvote()%> 표</li> <br/>
+	<input type="button" value="홈으로" onclick="javascript:window.location='main.jsp'" >
+	</form>
 	<%
 		}
 	%>

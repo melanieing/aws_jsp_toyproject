@@ -12,7 +12,8 @@ function modify(){
 	var musictype = document.getElementsByName("musictype");
 	for(var i= 0; i < musictype.length; i++){
 		if(musictype[i].checked == true){
-			 document.modifyForm.check.value == musictype[i].value;
-		}break;
+			document.modifyForm.check.value = musictype[i].value;
+			break;
+		}
 	}
 }

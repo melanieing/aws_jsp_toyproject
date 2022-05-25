@@ -18,9 +18,6 @@
 <link href="css/votestyle.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<ul>
-	<li><a href= insertForm.jsp> 뒤로가기</a></li>
-</ul>
 	<br></br>
 	<%
 		if (flag) { //등록된 상태
