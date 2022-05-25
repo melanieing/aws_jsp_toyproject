@@ -20,6 +20,6 @@
 	} else {
 		// 로그인 실패 -> request 영역에 오류 메시지 저장 후, 로그인 페이지로 포워드
 		request.setAttribute("LoginErrMsg", "로그인 오류입니다.");
-		request.getRequestDispatcher("Login/AdminLoginForm.jsp").forward(request, response);
+		request.getRequestDispatcher("AdminLoginForm.jsp").forward(request, response);
 	}
 %>

@@ -1,5 +1,3 @@
-<%@ page import="model1.board.BoardDAO"%>
-<%@ page import="model1.board.BoardDTO"%>
 <%@ page import="membership.MemberDAO"%>
 <%@ page import="membership.MemberDTO"%>
 <%@ page import="utils.JSFunction"%>
@@ -7,10 +5,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String memId = session.getAttribute("memId").toString();
-	String memPwd = session.getAttribute("memPwd").toString();
-	
 	String memNum = request.getParameter("memNum"); // 일련번호 받기
+	String memId = request.getParameter("memId");
+	String memPwd = request.getParameter("memPwd");
+	
 	System.out.println("멤버고유번호:" + memNum);
 	MemberDAO mdao = new MemberDAO(application); // DAO 생성
 	MemberDTO mdto = mdao.getMdtoByMemNum(memNum); // 개별 회원 정보 가져오기
@@ -24,7 +22,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:include page="../Common/AdminLink.jsp"/> <!-- 공통 링크 -->
+	<jsp:include page="../Common/UserLink.jsp"/> <!-- 공통 링크 -->
 	
 	<h2 align="center">회원 정보 수정하기</h2>
 	<form name="writeForm" action="<%=request.getContextPath() %>/Admin/EditUserProcess.jsp?memNum=<%= mdto.getMemNum() %>" method="post">

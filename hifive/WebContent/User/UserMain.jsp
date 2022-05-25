@@ -1,3 +1,6 @@
+<%@ page import="membership.MemberDAO" %>
+<%@ page import="membership.MemberDTO" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.time.LocalDate" %>
@@ -7,9 +10,15 @@
 
 <%
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일");
-
+	
 	String memId= request.getParameter("memId");
+	System.out.println(mem)
+	MemberDTO getMemberDTO(String memId, String memPwd);
+	MemberDAO mdao = new MemberDAO(application);
+	MemberDTO mdto = mdao.getMdtoByMemId(memId);
 	String memPwd = request.getParameter("memPwd");
+	String memNum = mdto.getMemNum();
+	System.out.println(memNum);
 	
 %>
 <!DOCTYPE html>
@@ -41,8 +50,8 @@
 	<table width="20%" align="center">
 		<tr>
 			<td align="center">
-				<form action="<%= request.getContextPath() %>/User/EditUserInfoForUser.jsp" method="get">
-					<input type="submit" name="userMenu" value="개인정보 수정"><br/>
+				<form action="<%= request.getContextPath() %>/User/UserViewForUser.jsp" method="get">
+					<input type="submit" name="userMenu" value="개인정보 확인/수정"><br/>
 				</form>
 			</td>
 		</tr>

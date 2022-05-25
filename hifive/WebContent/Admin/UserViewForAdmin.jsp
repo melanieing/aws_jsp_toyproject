@@ -1,5 +1,3 @@
-<%@ page import="model1.board.BoardDAO"%>
-<%@ page import="model1.board.BoardDTO"%>
 <%@ page import="membership.MemberDAO"%>
 <%@ page import="membership.MemberDTO"%>
 <%@ page import="utils.JSFunction"%>

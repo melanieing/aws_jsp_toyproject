@@ -9,8 +9,6 @@ import javax.servlet.ServletContext;
 
 import common.JDBCConnect;
 import membership.MemberDAO;
-import membership.MemberDTO;
-import model1.board.BoardDTO;
 
 public class QuestionDAO extends JDBCConnect {
 	
