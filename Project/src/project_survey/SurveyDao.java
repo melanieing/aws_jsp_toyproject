@@ -44,14 +44,12 @@ public class SurveyDao {
 		boolean ret = false;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		int test = -1;
 		String sql = "insert into \"SURVEY\" values (\"SEQ_SURVEY\".nextval, ?, 0)";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, other);
-			test = pstmt.executeUpdate();
-			System.out.println(test);
+			pstmt.executeUpdate();
 			ret = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -245,6 +243,36 @@ public class SurveyDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	//투표 수 초기화
+	public void editVote() {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "update \"SURVEY\" set \"VOTE\" = 0";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
 			if(pstmt != null) {
 				try {
 					pstmt.close();
