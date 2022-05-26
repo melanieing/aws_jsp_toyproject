@@ -12,6 +12,6 @@
 <meta http-equiv="Refresh" content="3;url=index.jsp">
 </head>
 <body>
-<b> <%= deleteList %>이(가) 삭제되었습니다. </b> <br/>
+<b> <%= deleteList %> 가(이) 삭제되었습니다. </b> <br/>
 3초 후에 메인 페이지로 이동합니다.
 </body>

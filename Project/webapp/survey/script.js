@@ -62,10 +62,12 @@ function update() {
 				document.updateForm.updateName.value = "";
 				return;
 			}			
+		}		
+		for(let i = 0; i < movieName.length; i++){
 			if(movieName[i].checked == true){ 				
-			document.updateForm.checkedVal.value = movieName[i].value;			
-			break;
-			}		
+				document.updateForm.checkedVal.value = movieName[i].value;			
+				break;
+			}
 		}
 	}
 	document.updateForm.submit();
@@ -93,4 +95,5 @@ function deleteList() {
 	}
 	document.deleteForm.submit();
 }	
+
 
